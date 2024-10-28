@@ -1,0 +1,87 @@
+﻿@model MachineTest1.Models.tblCategory
+@{
+    Layout = "~/Views/Shared/ProductLayout.cshtml";
+
+}
+@using MachineTest1.Models
+
+<div class="row">
+    <div class="col-md-4">
+
+        @using (Html.BeginForm())
+        {
+
+            @Html.HiddenFor(e=>e.category_id)
+            <div class="card">
+                <div class=" card-header">
+                    <h4>Update Category</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label>Category Name</label>
+                        @Html.TextBoxFor(e => e.category_name, new { placeholder = "Enter Catagory", @class = "form-control" })
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" value="Submit" class="btn btn-info" />
+                    <h6>@ViewBag.msg </h6>
+                </div>
+            </div>
+
+
+
+
+
+
+        }
+
+
+    </div>
+    <div class="col-md-8">
+
+        @{
+            List<tblCategory> lst = (List<tblCategory>)ViewData["categories"];
+        }
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr class="text text-center">
+
+                    <th>Category Id</th>
+                    <th>Category Name</th>
+                    <th>Action</th>
+
+
+                </tr>
+
+
+            </thead>
+            <tbody>
+                @foreach (var s in lst)
+                {
+                    <tr class="text text-center">
+
+                        <td>@s.category_id</td>
+
+                        <td>@s.category_name</td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "EditCategory", new { @id = s.category_id }, new { @class = "btn btn-info btn-sm" }) &nbsp;
+
+                            @Html.ActionLink("Delete", "DeleteCategory", new { @id = s.category_id }, new { @class = "btn btn-danger btn-sm" })
+
+                        </td>
+
+                    </tr>
+
+
+                }
+
+
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+

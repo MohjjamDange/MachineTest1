@@ -1,0 +1,48 @@
+﻿@model MachineTest1.Models.tblProduct
+@{
+    Layout = "~/Views/Shared/ProductLayout.cshtml";
+
+}
+<div class="row">
+    <div class="col-md-4">
+
+        @using (Html.BeginForm())
+        {
+
+            <div class="card">
+                <div class=" card-header">
+                    <h4>New Product</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label>Select Category</label>
+                        @Html.DropDownListFor(e => e.category_id,ViewBag.categories as List<SelectListItem>,"Select Category", new {  @class = "form-control" })
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Product Name</label>
+                        @Html.TextBoxFor(e => e.product_name, new { placeholder = "product name", @class = "form-control" })
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" value="Submit" class="btn btn-info" />
+                    <h6>@ViewBag.msg </h6>
+                </div>
+            </div>
+
+
+
+
+
+
+        }
+
+
+    </div>
+    
+</div>
+     
+
+

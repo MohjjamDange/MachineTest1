@@ -1,0 +1,104 @@
+﻿
+@{
+    Layout = "~/Views/Shared/ProductLayout.cshtml";
+}
+<div class="row">
+    <div class="col-md-5">
+        <a href="/Product/AddProduct" class="btn btn-primary btn-sm">New Product</a>
+        <hr/>
+    </div>
+</div>
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="text text-center">
+                    <th>Product Id</th>
+                    <th>Product Name</th>
+                    <th>Category Id</th>
+                    <th>Category Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                    <tr class="text text-center">
+                        <td>@s.product_id</td>
+                        <td>@s.product_name</td>
+                        <td>@s.tblCategory.category_id </td>
+                        <td>@s.tblCategory.category_name</td>
+
+                        <td>
+                        @Html.ActionLink("Edit", "EditProduct", new { @id = s.product_id }, new { @class = "btn btn-info btn-sm" }) 
+                        &nbsp; 
+                        @Html.ActionLink("Delete", "DeleteProduct", new { @id = s.product_id }, new { @class = "btn btn-danger btn-sm" })</td>
+
+                    </tr>
+
+
+                }
+
+
+            </tbody>
+
+
+        </table>
+        <div>
+            @if (ViewBag.dbCount != null)
+            {
+
+
+                <ul class="pagination">
+                    @if (ViewBag.currentpage > 1)
+                    {
+                        <li class="page-item"><a href="/Product/Index?page=-1" class="page-link">Prev</a></li>
+
+                    }
+                    else
+                    {
+                        <li class="page-item"><a href="/Product/Index?page=-1" class="page-link disabled">Prev</a></li>
+
+                    }
+                    @for (int i = 1; i <= ViewBag.dbCount; i++)
+                    {
+
+
+                        if (ViewBag.currentpage == i)
+                        {
+                            <li class="page-item active"><a href="/Product/Index?page=@i" class="page-link">@i.ToString()</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a href="/Product/Index?page=@i" class="page-link">@i.ToString()</a></li>
+
+                        }
+                    }
+
+                    @if (ViewBag.currentpage < ViewBag.dbCount)
+                    {
+                        <li class="page-item "><a href="/Product/Index?page=-2" class="page-link">Next</a></li>
+
+                    }
+                    else
+                    {
+                        <li class="page-item"><a href="/Product/Index?page=-2" class="page-link disabled">Next</a></li>
+
+                    }
+
+                </ul>
+
+            }
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
