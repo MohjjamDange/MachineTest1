@@ -35,7 +35,6 @@
 
                     </tr>
 
-
                 }
 
 
@@ -49,6 +48,7 @@
 
 
                 <ul class="pagination">
+
                     @if (ViewBag.currentpage > 1)
                     {
                         <li class="page-item"><a href="/Product/Index?page=-1" class="page-link">Prev</a></li>
@@ -72,6 +72,7 @@
                             <li class="page-item"><a href="/Product/Index?page=@i" class="page-link">@i.ToString()</a></li>
 
                         }
+
                     }
 
                     @if (ViewBag.currentpage < ViewBag.dbCount)
@@ -86,6 +87,11 @@
                     }
 
                 </ul>
+
+               
+                <span style="font-weight:lighter"> Showing <label style="font-family:'Times New Roman', Times, serif;"> @ViewBag.iLow</label> to <label style="font-family:'Times New Roman', Times, serif;">@ViewBag.iHigh</label> of <label class="badge bg-secondary">@ViewBag.CountRecords</label>  </span>
+
+
 
             }
 

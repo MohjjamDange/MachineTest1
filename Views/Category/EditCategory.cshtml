@@ -1,8 +1,9 @@
 ﻿@model MachineTest1.Models.tblCategory
 @{
+    ViewBag.Title = "EditCategory";
     Layout = "~/Views/Shared/ProductLayout.cshtml";
-
 }
+
 @using MachineTest1.Models
 
 <div class="row">
@@ -11,7 +12,7 @@
         @using (Html.BeginForm())
         {
 
-            @Html.HiddenFor(e=>e.category_id)
+            @Html.HiddenFor(e => e.category_id)
             <div class="card">
                 <div class=" card-header">
                     <h4>Update Category</h4>
@@ -84,4 +85,5 @@
     </div>
 
 </div>
+
 

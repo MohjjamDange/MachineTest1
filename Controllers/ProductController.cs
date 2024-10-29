@@ -172,6 +172,36 @@ namespace MachineTest1.Controllers
 
             List<tblProduct> lst = GetEnquiries(page, pageSize, out totalRecord, out totalPage);
             ViewBag.dbCount = totalPage;
+           ViewBag.CountRecords = totalRecord;
+            if (page == 1)
+            {
+                ViewBag.iLow = 1;
+
+            }
+            else if (page == totalPage)
+            {
+                ViewBag.iLow = (10 * (page - 1)) + 1;
+
+            }
+            else
+            {
+                ViewBag.iLow = (page * 10) - 9;
+
+            }
+            if (page == totalPage)
+            {
+
+                int i =  lst.Count % 10;
+                ViewBag.iHigh = ViewBag.iLow + (i - 1);
+
+
+            }
+            else
+            {
+                ViewBag.iHigh = page * 10;
+
+            }
+
             return View(lst);
         }
 
@@ -187,6 +217,7 @@ namespace MachineTest1.Controllers
                 query.Add(p);   
             }
             totalRecord = db.tblProducts.Count();
+            
             totalPage = (totalRecord / pageSize) + ((totalRecord % pageSize) > 0 ? 1 : 0);
             List<tblProduct> listdata = db.tblProducts.OrderBy(a => a.product_id).Skip(((page - 1) * pageSize)).Take(pageSize).ToList();
             return listdata;
