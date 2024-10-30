@@ -17,58 +17,26 @@ namespace MachineTest1.Controllers
             
             db = new MyDbContext();
         }
-        //public ActionResult Category() {
-
-        //    ViewData["categories"] = db.tblCategories.ToList();
-        //    return View();
-        
-        //}
-        //[HttpPost]
-        //public ActionResult Category(tblCategory c)
-        //{
-        //    db.tblCategories.Add(c);
-        //    db.SaveChanges();
-        //    ModelState.Clear();
-        //    ViewBag.msg = "Category Added Successfully";
-        //    ViewData["categories"] = db.tblCategories.ToList();
-
-        //    return View();
-        //}
 
 
+        public ActionResult AddProduct()
+        {
 
-        //public ActionResult EditCategory(int id) {
-
-        //    tblCategory tb = db.tblCategories.Find(id);
-        //    ViewData["categories"] = db.tblCategories.ToList();
-
-        //    return View(tb);
-        
-        //}
-        //[HttpPost]
-        //public ActionResult EditCategory(tblCategory c)
-        //{
-        //    db.Entry<tblCategory>(c).State = System.Data.Entity.EntityState.Modified;
-        //    db.SaveChanges();
-
-        //    return RedirectToAction("Category");
-
-        //}
-
-        //public ActionResult DeleteCategory(int id)
-        //{
-        //    tblCategory t =  db.tblCategories.Find(id);
-        //    db.tblCategories.Remove(t);
-        //    db.SaveChanges();
+            ViewBag.categories = getAllCategories();
+            return View();
 
 
-        //    return RedirectToAction("Category");
-        
-        
-        //}
-
-
-
+        }
+        [HttpPost]
+        public ActionResult AddProduct(tblProduct p)
+        {
+            db.tblProducts.Add(p);
+            db.SaveChanges();
+            ModelState.Clear();
+            ViewBag.categories = getAllCategories();
+            ViewBag.msg = "Product Added Successfully";
+            return View();
+        }
 
         public ActionResult EditProduct(int id)
         {
@@ -105,23 +73,7 @@ namespace MachineTest1.Controllers
 
 
 
-        public ActionResult AddProduct() {
-
-            ViewBag.categories =  getAllCategories();
-            return View();
-
-
-        }
-        [HttpPost]
-        public ActionResult AddProduct(tblProduct p)
-        {
-            db.tblProducts.Add(p);
-            db.SaveChanges();
-            ModelState.Clear();
-            ViewBag.categories = getAllCategories();
-            ViewBag.msg = "Product Added Successfully";
-            return View();
-        }
+      
 
         public List<SelectListItem> getAllCategories() {
             List<SelectListItem> lst = new List<SelectListItem>();
