@@ -17,55 +17,55 @@ namespace MachineTest1.Controllers
             
             db = new MyDbContext();
         }
-        public ActionResult Category() {
+        //public ActionResult Category() {
 
-            ViewData["categories"] = db.tblCategories.ToList();
-            return View();
+        //    ViewData["categories"] = db.tblCategories.ToList();
+        //    return View();
         
-        }
-        [HttpPost]
-        public ActionResult Category(tblCategory c)
-        {
-            db.tblCategories.Add(c);
-            db.SaveChanges();
-            ModelState.Clear();
-            ViewBag.msg = "Category Added Successfully";
-            ViewData["categories"] = db.tblCategories.ToList();
+        //}
+        //[HttpPost]
+        //public ActionResult Category(tblCategory c)
+        //{
+        //    db.tblCategories.Add(c);
+        //    db.SaveChanges();
+        //    ModelState.Clear();
+        //    ViewBag.msg = "Category Added Successfully";
+        //    ViewData["categories"] = db.tblCategories.ToList();
 
-            return View();
-        }
+        //    return View();
+        //}
 
 
 
-        public ActionResult EditCategory(int id) {
+        //public ActionResult EditCategory(int id) {
 
-            tblCategory tb = db.tblCategories.Find(id);
-            ViewData["categories"] = db.tblCategories.ToList();
+        //    tblCategory tb = db.tblCategories.Find(id);
+        //    ViewData["categories"] = db.tblCategories.ToList();
 
-            return View(tb);
+        //    return View(tb);
         
-        }
-        [HttpPost]
-        public ActionResult EditCategory(tblCategory c)
-        {
-            db.Entry<tblCategory>(c).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
+        //}
+        //[HttpPost]
+        //public ActionResult EditCategory(tblCategory c)
+        //{
+        //    db.Entry<tblCategory>(c).State = System.Data.Entity.EntityState.Modified;
+        //    db.SaveChanges();
 
-            return RedirectToAction("Category");
+        //    return RedirectToAction("Category");
 
-        }
+        //}
 
-        public ActionResult DeleteCategory(int id)
-        {
-            tblCategory t =  db.tblCategories.Find(id);
-            db.tblCategories.Remove(t);
-            db.SaveChanges();
+        //public ActionResult DeleteCategory(int id)
+        //{
+        //    tblCategory t =  db.tblCategories.Find(id);
+        //    db.tblCategories.Remove(t);
+        //    db.SaveChanges();
 
 
-            return RedirectToAction("Category");
+        //    return RedirectToAction("Category");
         
         
-        }
+        //}
 
 
 
